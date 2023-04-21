@@ -1,0 +1,98 @@
+#%RAML 1.0
+title: covid_cases_API
+baseUri: http://localhost:8081/covid_cases
+/covid_cases:
+  post:
+    description: the resourse used to register covid case
+    body:
+      application/json:
+        type: object
+        properties:
+          source:
+            type: string
+            required: true
+            example: "hospital"
+          case_type:
+            type: string
+            required: true
+            example: "positive"
+          first_name:
+            type: string
+            required: true
+            example: "john"
+          last_name:
+            type: string
+            required: true
+            example: "Abraham"
+          address:
+            type: object
+            properties:
+              state:
+                required: true
+                type: string
+                example: "california"
+              country:
+                type: string
+                required: true
+                example: "US"
+              postalcode:
+                type: number
+                required: true
+                example: 512132
+        example:
+         {
+               "source":"appolo hospital",
+               "case_type":"positive",
+               "first_name":"johnn",
+               "last_name":"abraham",
+               "address":{
+                          "state":"california",
+                          "country":"US",
+                          "postalcode":523113
+                         }    
+         }
+    responses: 
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              source:
+                type: string
+                required: true
+                example: "appolo hospital"
+            example:
+              {
+                "source":"appolo hospital"
+              }
+      400:
+        body:
+          application/json:
+            type: object
+            properties:
+              status:
+                type: integer
+                required: true
+                example: 400
+              message:
+                type: string
+                required: true
+                example: "internal server error"
+            example:
+             {
+              "status":400,
+              "message":"internal server error"
+            } 
+      
+                      
+                  
+              
+                  
+
+                  
+
+                  
+          
+              
+          
+              
